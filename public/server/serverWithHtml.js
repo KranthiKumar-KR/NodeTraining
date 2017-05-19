@@ -15,10 +15,19 @@ function send404Response(response) {
 
 //handle user request with an html page
 function onRequest(request, response) {
-    if (request.method == 'GET' && request.url =='/') {
-        response.writeHead(200, {"Content-Type": "text/html"});
-        fs.createReadStream("./index.html").pipe(response);
+    if (request.method === 'GET' && request.url ==='/') {
+        console.log('successful request made by an user');
+
+        fs.readFile('./index.html', function (err, data) {
+            response.writeHead(200, {"Content-Type": "text/html"});
+            response.write(data);
+            response.end();
+        });
+        // response.writeHead(200, {"Content-Type": "text/html"});
+        // fs.createReadStream("./index.html").pipe(response);
+        // response.end();
     } else {
+        console.log('unsuccessful request made by an user');
         send404Response(response);
     }
 }
