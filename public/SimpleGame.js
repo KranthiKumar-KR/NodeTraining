@@ -3,6 +3,8 @@
  */
 
 
+
+
 function Player() {
     this.name = "";
     this.health = 100;
